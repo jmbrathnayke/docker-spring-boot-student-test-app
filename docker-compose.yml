@@ -1,0 +1,22 @@
+services:
+  postgres:
+    image: postgres:latest
+    ports:
+      - "5433:5432"
+    environment:
+      POSTGRES_DB: manu
+      POSTGRES_USER: jani
+      POSTGRES_PASSWORD: 1212
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U jani -d manu"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+  student-app:
+    build: .
+    ports:
+      - "8090:8080"
+    depends_on:
+      postgres:
+        condition: service_healthy
