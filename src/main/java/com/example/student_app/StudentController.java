@@ -12,6 +12,7 @@ public class StudentController {
     @Autowired
     StudentRepo repo;
 
+    //mapping
     @RequestMapping("/getStudents")
     public List<Student> getStudents(){
        return  repo.findAll(); //return the data for database
