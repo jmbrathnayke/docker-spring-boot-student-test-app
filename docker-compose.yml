@@ -3,6 +3,12 @@ services:
     image: postgres:latest
     ports:
       - "5433:5432"
+
+
+
+    volumes:
+      - postgres-s-data:/var/lib/postgresql/data
+
     environment:
       POSTGRES_DB: manu
       POSTGRES_USER: jani
@@ -20,3 +26,7 @@ services:
     depends_on:
       postgres:
         condition: service_healthy
+
+
+volumes:
+  postgres-s-data:
